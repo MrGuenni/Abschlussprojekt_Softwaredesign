@@ -46,3 +46,7 @@ ax.set_aspect('equal')
 ax.set_title("Mechanismus-Simulation")
 
 st.pyplot(fig)
+
+if st.button("Bahnkurve speichern"):
+    kin.save_positions_to_csv()
+    st.success("Bahnkurve gespeichert als 'bahnkurve.csv'")
