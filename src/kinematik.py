@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.optimize import least_squares
 from src.mechanismus import Mechanism, Joint, Link
+import pandas as pd 
 
 class Kinematics:
     def __init__(self, mechanism: Mechanism, driving_joint: Joint):
@@ -47,3 +48,14 @@ class Kinematics:
             joint.x, joint.y = result.x[2 * i], result.x[2 * i + 1]
 
         return self.mechanism.joints
+
+def save_positions_to_csv(self, filename="bahnkurve.csv"):
+    data = {"Joint": [], "X": [], "Y": []}
+    for i, joint in enumerate(self.mechanism.joints):
+        data["Joint"].append(f"Joint {i}")
+        data["X"].append(joint.x)
+        data["Y"].append(joint.y)
+    
+    df = pd.DataFrame(data)
+    df.to_csv(filename, index=False)
+    print(f"Speicherung abgeschlossen: {filename}")
