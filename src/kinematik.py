@@ -12,11 +12,11 @@ class Kinematics:
         if fixed_joint is None:
             raise ValueError("Kein festes Gelenk gefunden!")
 
-        cos_theta = np.cos(np.radians(theta))
-        sin_theta = np.sin(np.radians(theta))
+        r = np.sqrt((self.driving_joint.x - fixed_joint.x) ** 2 + (self.driving_joint.y - fixed_joint.y) ** 2)
+        angle_rad = np.radians(theta)
 
-        self.driving_joint.x = fixed_joint.x + (self.driving_joint.x - fixed_joint.x) * cos_theta - (self.driving_joint.y - fixed_joint.y) * sin_theta
-        self.driving_joint.y = fixed_joint.y + (self.driving_joint.x - fixed_joint.x) * sin_theta + (self.driving_joint.y - fixed_joint.y) * cos_theta
+        self.driving_joint.x = fixed_joint.x + r * np.cos(angle_rad)
+        self.driving_joint.y = fixed_joint.y + r * np.sin(angle_rad)
 
     def calculate_positions(self, theta):
         self.apply_rotation(theta)
