@@ -8,7 +8,6 @@ class Kinematics:
         self.driving_joint = driving_joint
 
     def apply_rotation(self, theta):
-        #Drehung um festen Pkt
         fixed_joint = next((j for j in self.mechanism.joints if j.fixed), None)
         if fixed_joint is None:
             raise ValueError("Kein festes Gelenk gefunden!")
@@ -30,7 +29,6 @@ class Kinematics:
             return self.mechanism.joints
 
         def equations(vars):
-            #Fehlergl.
             joint_map = {variable_joints[i]: (vars[2 * i], vars[2 * i + 1]) for i in range(len(variable_joints))}
             eqs = []
             for link in self.mechanism.links:
