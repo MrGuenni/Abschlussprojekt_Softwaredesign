@@ -1,5 +1,6 @@
 import sys
 import os
+import csv
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
@@ -54,13 +55,13 @@ class Kinematics:
 
         return self.mechanism.joints
 
-def save_positions_to_csv(self, filename="bahnkurve.csv"):
-    data = {"Joint": [], "X": [], "Y": []}
-    for i, joint in enumerate(self.mechanism.joints):
-        data["Joint"].append(f"Joint {i}")
-        data["X"].append(joint.x)
-        data["Y"].append(joint.y)
-    
-    df = pd.DataFrame(data)
-    df.to_csv(filename, index=False)
-    print(f"Speicherung abgeschlossen: {filename}")
+    def save_positions_to_csv(self, filename="bahnkurve.csv"):
+        data = {"Joint": [], "X": [], "Y": []}
+        for i, joint in enumerate(self.mechanism.joints):
+            data["Joint"].append(f"Joint {i}")
+            data["X"].append(joint.x)
+            data["Y"].append(joint.y)
+        
+        df = pd.DataFrame(data)
+        df.to_csv(filename, index=False)
+        print(f"Speicherung abgeschlossen: {filename}")
