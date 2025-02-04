@@ -40,8 +40,16 @@ ax.set_ylim(-5, 7)
 ax.set_aspect('equal')
 ax.set_title("Mechanismus-Simulation")
 
-st.pyplot(fig)
-
 if st.button("Bahnkurve speichern"):
     kin.save_positions_to_csv()
     st.success("Bahnkurve gespeichert als 'bahnkurve.csv'")
+
+if st.button("Mechanismus speichern"):
+    mech.save_mechanism()
+    st.success("Mechanismus gespeichert als 'mechanismus.json'")
+
+if st.button("Mechanismus laden"):
+    mech.load_mechanism()
+    st.success("Mechanismus aus 'mechanismus.json' geladen")
+
+st.pyplot(fig)
