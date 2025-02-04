@@ -1,3 +1,8 @@
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import numpy as np
 from scipy.optimize import least_squares
 from src.mechanismus import Mechanism, Joint, Link
